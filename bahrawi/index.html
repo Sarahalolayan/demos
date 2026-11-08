@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>نموذج موقع استديو تصوير البحراوي</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#08131d; --gold:#e9c46a; --cream:#f3ece0; --dim:rgba(243,236,224,.66); --line:rgba(243,236,224,.2); }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { background:var(--bg); scroll-behavior:smooth; -webkit-text-size-adjust:100%; }
+  body { background:var(--bg); color:var(--cream); font-family:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif; font-weight:300; line-height:1.8; overflow-x:clip; }
+  a { color:inherit; text-decoration:none; }
+  button,input,select { font:inherit; color:inherit; }
+  :focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
+  h1,h2,.serif { font-family:Amiri,"Noto Naskh Arabic",serif; font-weight:400; line-height:1.25; }
+
+  .bar { position:fixed; top:0; right:0; height:2px; width:100%; background:var(--gold); transform-origin:right; transform:scaleX(var(--s,0)); z-index:60; }
+  header { position:fixed; inset:0 0 auto 0; z-index:50; display:flex; align-items:center; gap:30px; padding:18px 44px; font-size:14px; background:linear-gradient(to bottom,rgba(0,0,0,.55),transparent); }
+  .brand { font-family:Amiri,serif; font-size:23px; }
+  header nav { display:flex; gap:26px; flex:1; color:var(--dim); }
+  header nav a:hover { color:var(--cream); }
+  .res { border:1px solid var(--line); padding:7px 20px; letter-spacing:0; transition:background .2s,color .2s; }
+  .res:hover { background:var(--cream); color:#111; }
+
+  .pin { position:relative; }
+  .stage { position:sticky; top:0; height:100vh; height:100svh; overflow:hidden; background:var(--bg); }
+  .bg { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block; will-change:transform; }
+  .shade { position:absolute; inset:0; background:linear-gradient(to left,rgba(0,0,0,.72),rgba(0,0,0,.12) 65%); }
+  .txt { position:absolute; opacity:0; will-change:transform,opacity; }
+  .eyebrow { color:var(--gold); font-size:14px; font-weight:400; display:block; margin-bottom:10px; }
+
+  #hero { height:230vh; }
+  #hero .bg { transform:scale(calc(1 + var(--p,0) * .55)); transform-origin:55% 45%; }
+  #hero .shade { background:linear-gradient(to left,rgba(0,0,0,.72),rgba(0,0,0,.08) 70%); opacity:calc(1 + var(--p,0) * .4); }
+  #hero .txt { right:7vw; bottom:17vh; max-width:640px; }
+  #hero h1 { font-size:clamp(50px,7.4vw,108px); }
+  #hero p { font-size:clamp(16px,1.5vw,20px); color:var(--dim); margin-top:6px; }
+  .scroll { position:absolute; left:50%; bottom:26px; transform:translateX(-50%); font-size:13px; color:var(--dim); text-align:center; opacity:calc(1 - var(--p,0) * 5); }
+  .scroll i { display:block; width:1px; height:34px; background:var(--gold); margin:6px auto 0; animation:drop 1.7s ease-in-out infinite; transform-origin:top; }
+  @keyframes drop { 0%{transform:scaleY(0)} 55%{transform:scaleY(1)} 100%{transform:scaleY(1);opacity:0} }
+
+  #iris { height:280vh; }
+  #iris .stage { background:#050505; }
+  #iris .bg { clip-path:circle(calc(5% + var(--p,0) * 150%) at 50% 50%); transform:scale(calc(1.25 - var(--p,0) * .25)); }
+  .veil { position:absolute; inset:0; background:linear-gradient(to top,rgba(0,0,0,.82),transparent 58%); opacity:calc((var(--p,0) - .45) * 3); }
+  .ring { position:absolute; top:50%; left:50%; width:30vmin; height:30vmin; margin:-15vmin 0 0 -15vmin; border:1px solid var(--gold); border-radius:50%; transform:scale(calc(.7 + var(--p,0) * 7)); opacity:calc(1 - var(--p,0) * 2.2); }
+  #iris .txt { inset:auto 0 12vh 0; text-align:center; padding:0 24px; }
+  #iris h2 { font-size:clamp(38px,5.2vw,74px); text-shadow:0 2px 26px rgba(0,0,0,.65); }
+  #iris .t0 { inset:auto 0 calc(50% - 32vmin) 0; color:var(--dim); font-size:16px; }
+
+  #film { height:420vh; }
+  #film .stage { display:flex; flex-direction:column; justify-content:center; padding-top:40px; }
+  #film .head { padding:0 7vw 24px; display:flex; justify-content:space-between; align-items:baseline; gap:20px; }
+  #film h2 { font-size:clamp(34px,4.2vw,60px); }
+  #film .head span { color:var(--dim); font-size:15px; }
+  .track { display:flex; gap:22px; width:max-content; padding:0 7vw; will-change:transform; }
+  .frame { flex:none; width:clamp(270px,38vw,540px); }
+  .frame div { height:clamp(240px,50vh,500px); overflow:hidden; }
+  .frame img { width:118%; height:100%; object-fit:cover; display:block; transform:translateX(calc((var(--x,0) * 1px))); }
+  .frame b { font-family:Amiri,serif; font-weight:400; font-size:24px; display:block; margin-top:9px; }
+  .frame small { color:var(--dim); font-size:14px; }
+
+  #svc { height:400vh; }
+  #svc .bg { opacity:0; transition:opacity .7s ease,transform 1.4s ease; transform:scale(1.08); }
+  #svc .bg.on { opacity:1; transform:scale(1); }
+  #svc .shade { background:linear-gradient(to left,rgba(0,0,0,.88),rgba(0,0,0,.34)); }
+  .list { position:absolute; right:7vw; top:50%; transform:translateY(-50%); width:min(560px,86vw); }
+  .list h2 { font-size:clamp(30px,3vw,44px); margin-bottom:18px; }
+  .row { border-top:1px solid var(--line); padding:15px 0; color:var(--dim); transition:color .4s,padding .4s; display:flex; gap:18px; align-items:baseline; }
+  .row em { font-style:normal; font-size:14px; color:var(--gold); }
+  .row b { font-family:Amiri,serif; font-weight:400; font-size:clamp(26px,3vw,40px); line-height:1.3; }
+  .row p { display:block; max-height:0; opacity:0; overflow:hidden; font-size:15.5px; transition:max-height .5s,opacity .5s; }
+  .row.on { color:var(--cream); padding-right:14px; }
+  .row.on p { max-height:80px; opacity:1; }
+
+  #reserve { min-height:100vh; padding:110px 7vw 60px; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center; }
+  #reserve h2 { font-size:clamp(44px,5.4vw,80px); }
+  #reserve .lead { color:var(--dim); font-size:17px; margin-top:12px; max-width:440px; }
+  form label { display:block; font-size:13.5px; color:var(--dim); margin-bottom:22px; }
+  form input,form select { display:block; width:100%; background:transparent; border:0; border-bottom:1px solid var(--line); padding:8px 0; font-size:18px; font-weight:300; border-radius:0; color-scheme:dark; }
+  form select option { color:#111; }
+  form input:focus,form select:focus { outline:0; border-color:var(--gold); }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:26px; }
+  .send { width:100%; min-height:54px; background:var(--gold); color:#17120a; border:0; font-size:17px; font-weight:500; cursor:pointer; transition:filter .2s; }
+  .send:hover { filter:brightness(1.1); }
+  .e { color:#f0a597; font-size:13px; display:block; min-height:18px; }
+  .thanks { border:1px solid var(--line); padding:38px; }
+  .thanks h3 { font-family:Amiri,serif; font-weight:400; font-size:38px; }
+  .thanks p { color:var(--dim); }
+  footer { border-top:1px solid var(--line); padding:20px 7vw; font-size:13.5px; color:var(--dim); display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; }
+
+  @media (max-width:760px) {
+    header { padding:13px 18px; gap:12px; justify-content:space-between; }
+    header nav { display:none; }
+    .shade,#hero .shade { background:linear-gradient(to top,rgba(0,0,0,.82),rgba(0,0,0,.14) 72%); }
+    #hero .txt { right:22px; left:22px; bottom:13vh; }
+    #svc .shade { background:rgba(0,0,0,.76); }
+    #film .head { flex-direction:column; gap:0; padding-bottom:16px; }
+    .frame { width:76vw; }
+    .frame div { height:46vh; }
+    .list { right:22px; left:22px; width:auto; }
+    #reserve { grid-template-columns:1fr; gap:30px; padding:84px 22px 40px; }
+    .two { gap:16px; }
+  }
+  @media (prefers-reduced-motion:reduce) {
+    html { scroll-behavior:auto; }
+    .pin { height:auto !important; }
+    .stage { position:relative; }
+    .txt { opacity:1 !important; transform:none !important; }
+    #iris .bg { clip-path:none; }
+    .track { flex-wrap:wrap; width:auto; }
+    .scroll i { animation:none; }
+  }
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<header>
+  <a class="brand" href="#hero">البحراوي</a>
+  <nav aria-label="الأقسام"><a href="#iris">رؤيتنا</a><a href="#film">أعمالنا</a><a href="#svc">الخدمات</a></nav>
+  <a class="res" href="#reserve">احجز جلسة</a>
+</header>
+
+<section class="pin" id="hero"><div class="stage">
+  <img class="bg" src="https://picsum.photos/id/1015/1800/1200" alt="" fetchpriority="high">
+  <div class="shade"></div>
+  <div class="txt" data-r="-1,-.5,.34,.62"><span class="eyebrow">استديو تصوير</span><h1>لحظاتكم تستاهل صورة تبقى</h1><p>جلسات تصوير للمناسبات والأعمال والمنتجات</p></div>
+  <div class="scroll">مرّر للأسفل<i></i></div>
+</div></section>
+
+<section class="pin" id="iris"><div class="stage">
+  <img class="bg" src="https://picsum.photos/id/1067/1800/1400" alt="" loading="eager">
+  <div class="veil"></div>
+  <div class="ring"></div>
+  <div class="txt t0" data-r="-1,-.5,.05,.22">افتح العدسة</div>
+  <div class="txt" data-r=".55,.76,1.5,2"><span class="eyebrow">رؤيتنا</span><h2>بعين تعرف متى تضغط</h2></div>
+</div></section>
+
+<section class="pin" id="film"><div class="stage">
+  <div class="head"><h2>من عدستنا</h2><span>تابع التمرير لمشاهدة الأعمال</span></div>
+  <div class="track" id="track">
+    <figure class="frame"><div><img src="https://picsum.photos/id/1071/1000/800" alt=""></div><b>جلسة سيارة</b><small>تصوير إعلاني</small></figure>
+    <figure class="frame"><div><img src="https://picsum.photos/id/1080/1000/800" alt=""></div><b>منتج طازج</b><small>تصوير أطعمة</small></figure>
+    <figure class="frame"><div><img src="https://picsum.photos/id/1059/1000/800" alt=""></div><b>واجهة متجر</b><small>تصوير متاجر</small></figure>
+    <figure class="frame"><div><img src="https://picsum.photos/id/1048/1000/800" alt=""></div><b>أبراج</b><small>تصوير معماري</small></figure>
+    <figure class="frame"><div><img src="https://picsum.photos/id/1031/1000/800" alt=""></div><b>خطوط وظلال</b><small>تصوير معماري</small></figure>
+  </div>
+</div></section>
+
+<section class="pin" id="svc"><div class="stage">
+  <img class="bg on" src="https://picsum.photos/id/1067/1800/1200" alt="">
+  <img class="bg" src="https://picsum.photos/id/1071/1800/1200" alt="">
+  <img class="bg" src="https://picsum.photos/id/1080/1800/1200" alt="">
+  <img class="bg" src="https://picsum.photos/id/1015/1800/1200" alt="">
+  <div class="shade"></div>
+  <div class="list">
+    <h2>ماذا نصوّر لكم</h2>
+    <div class="row on"><em>01</em><div><b>تغطية الفعاليات</b><p>المناسبات والمؤتمرات والحفلات، بتغطية كاملة وتسليم سريع.</p></div></div>
+    <div class="row"><em>02</em><div><b>تصوير المنتجات</b><p>صور تبيع منتجك في المتجر وحسابات التواصل.</p></div></div>
+    <div class="row"><em>03</em><div><b>المطاعم والمقاهي</b><p>الأطباق والمكان والأجواء، للمنيو والإعلانات.</p></div></div>
+    <div class="row"><em>04</em><div><b>الجلسات الخاصة</b><p>جلسات داخل الاستديو أو في موقعكم.</p></div></div>
+  </div>
+</div></section>
+
+<section id="reserve">
+  <div><span class="eyebrow">الحجز</span><h2>لنبدأ جلستك</h2><p class="lead">اكتب تفاصيلك ويوصلك عرض السعر على الواتساب.</p></div>
+  <div id="fbox">
+    <form id="f" novalidate>
+      <label>الاسم<input name="n" autocomplete="off"><span class="e" id="en"></span></label>
+      <label>رقم الجوال<input name="p" inputmode="tel" placeholder="05XXXXXXXX" autocomplete="off"><span class="e" id="ep"></span></label>
+      <div class="two">
+        <label>الخدمة<select name="s"><option>تغطية فعالية</option><option>تصوير منتجات</option><option>مطاعم ومقاهي</option><option>الجلسات الخاصة</option></select></label>
+        <label>التاريخ<input name="d" type="date"></label>
+      </div>
+      <button class="send">اطلب عرض سعر</button>
+    </form>
+  </div>
+</section>
+<footer><span>استديو تصوير البحراوي</span><span>نموذج توضيحي من Agentiq · الصور والنصوص توضيحية، وما يتم إرسال أي بيانات</span></footer>
+
+<script>
+const clamp = (v) => Math.min(1, Math.max(0, v));
+const pins = [...document.querySelectorAll('.pin')];
+const track = document.getElementById('track');
+const bar = document.getElementById('bar');
+const bgs = [...document.querySelectorAll('#svc .bg')], rows = [...document.querySelectorAll('#svc .row')];
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+let queued = false, active = 0;
+function update() {
+  queued = false;
+  const vh = innerHeight;
+  bar.style.setProperty('--s', clamp(scrollY / (document.documentElement.scrollHeight - vh)));
+  for (const s of pins) {
+    const r = s.getBoundingClientRect();
+    if (r.bottom < -vh || r.top > vh * 2) continue;
+    const p = clamp(-r.top / (s.offsetHeight - vh));
+    s.style.setProperty('--p', p.toFixed(4));
+    s.querySelectorAll('[data-r]').forEach((el) => {
+      const [a, b, c, d] = el.dataset.r.split(',').map(Number);
+      const i = clamp((p - a) / (b - a)), o = clamp((d - p) / (d - c));
+      el.style.opacity = Math.min(i, o);
+      el.style.transform = `translateY(${(1 - i) * 42 - (1 - o) * 42}px)`;
+    });
+    if (s.id === 'film' && !reduce) {
+      track.style.transform = `translate3d(${p * Math.max(0, track.scrollWidth - innerWidth)}px,0,0)`;
+    }
+    if (s.id === 'svc') {
+      const n = Math.min(rows.length - 1, Math.floor(p * rows.length));
+      if (n !== active) {
+        active = n;
+        bgs.forEach((b, i) => b.classList.toggle('on', i === n));
+        rows.forEach((b, i) => b.classList.toggle('on', i === n));
+      }
+    }
+  }
+}
+const ask = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
+addEventListener('scroll', ask, { passive: true });
+addEventListener('resize', ask);
+addEventListener('load', ask);
+update();
+
+const toEn = (s) => s.replace(/[٠-٩]/g, (d) => '٠١٢٣٤٥٦٧٨٩'.indexOf(d)).replace(/\D/g, '');
+document.getElementById('f').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const f = e.target, n = f.n.value.trim();
+  const en = n.length < 2 ? 'اكتب الاسم' : '', ep = /^05\d{8}$/.test(toEn(f.p.value)) ? '' : 'اكتب رقم جوال صحيح يبدأ بـ 05';
+  document.getElementById('en').textContent = en;
+  document.getElementById('ep').textContent = ep;
+  if (en || ep) return;
+  const box = document.getElementById('fbox'), d = document.createElement('div'), h = document.createElement('h3'), p = document.createElement('p');
+  d.className = 'thanks'; h.textContent = 'شكراً ' + n; p.textContent = 'هنا يوصل العميل تأكيد طلبه على الواتساب. هذا نموذج توضيحي، وما انرسلت أي بيانات.';
+  d.append(h, p); box.replaceChildren(d);
+});
+</script>
+</body>
+</html>
